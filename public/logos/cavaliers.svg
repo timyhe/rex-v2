@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
   <path
     d="M75 10C39.7 10 11 38.7 11 74s28.7 64 64 64 64-28.7 64-64S110.3 10 75 10z"
