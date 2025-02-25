@@ -37,7 +37,7 @@ import {
 import { CartesianGrid, XAxis, YAxis } from "recharts"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { CalendarDays, Download, Filter, RefreshCw, Ticket, TrendingUp, Users } from "lucide-react"
+import { Download, Filter, RefreshCw, Ticket, TrendingUp, Users } from "lucide-react"
 
 export default function Page() {
   // Chart config with Cavaliers colors
