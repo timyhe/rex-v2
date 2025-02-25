@@ -232,7 +232,7 @@ export default function Page() {
               <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+                    <CardTitle className="text-sm font-medium">Total revenue</CardTitle>
                     <TrendingUp className="h-4 w-4 text-[#860038]" />
                   </CardHeader>
                   <CardContent>
@@ -242,7 +242,7 @@ export default function Page() {
                 </Card>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Tickets Sold</CardTitle>
+                    <CardTitle className="text-sm font-medium">Tickets sold</CardTitle>
                     <Ticket className="h-4 w-4 text-[#FDBB30]" />
                   </CardHeader>
                   <CardContent>
@@ -252,7 +252,7 @@ export default function Page() {
                 </Card>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Avg. Ticket Price</CardTitle>
+                    <CardTitle className="text-sm font-medium">Avg. ticket price</CardTitle>
                     <Users className="h-4 w-4 text-[#041E42]" />
                   </CardHeader>
                   <CardContent>
@@ -262,7 +262,7 @@ export default function Page() {
                 </Card>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Sellout Rate</CardTitle>
+                    <CardTitle className="text-sm font-medium">Sellout rate</CardTitle>
                     <TrendingUp className="h-4 w-4 text-[#860038]" />
                   </CardHeader>
                   <CardContent>
@@ -276,10 +276,10 @@ export default function Page() {
                 <Card className="col-span-1">
                   <CardHeader className="flex flex-row items-start justify-between">
                     <div>
-                      <CardTitle>Revenue by Ticket Type</CardTitle>
+                      <CardTitle>Revenue by ticket type</CardTitle>
                       <CardDescription>January - June 2024</CardDescription>
                     </div>
-                    <Button variant="outline" size="sm">View Details</Button>
+                    <Button variant="outline" size="sm">View details</Button>
                   </CardHeader>
                   <CardContent className="flex flex-col min-h-[350px]">
                     <div className="h-[300px]">
@@ -363,7 +363,7 @@ export default function Page() {
                           Trending up by 5.2% this month
                         </Badge>
                         <Badge variant="secondary" className="font-medium">
-                          Total Revenue: $5.2M
+                          Total revenue: $5.2M
                         </Badge>
                       </div>
                     </div>
@@ -373,10 +373,10 @@ export default function Page() {
                 <Card className="col-span-1">
                   <CardHeader className="flex flex-row items-start justify-between">
                     <div>
-                      <CardTitle>Ticket Distribution</CardTitle>
-                      <CardDescription>Current Season</CardDescription>
+                      <CardTitle>Ticket distribution</CardTitle>
+                      <CardDescription>Current season</CardDescription>
                     </div>
-                    <Button variant="outline" size="sm">View Details</Button>
+                    <Button variant="outline" size="sm">View details</Button>
                   </CardHeader>
                   <CardContent className="flex flex-col min-h-[350px]">
                     <div className="h-[300px]">
@@ -434,7 +434,7 @@ export default function Page() {
                           Trending up by 3.8% this month
                         </Badge>
                         <Badge variant="secondary" className="font-medium">
-                          Total Tickets: 42,384
+                          Total tickets: 42,384
                         </Badge>
                       </div>
                     </div>
@@ -446,10 +446,10 @@ export default function Page() {
                 <Card className="col-span-4">
                   <CardHeader className="flex flex-row items-start justify-between">
                     <div>
-                      <CardTitle>Attendance by Event</CardTitle>
+                      <CardTitle>Attendance by event</CardTitle>
                       <CardDescription>January - June 2024</CardDescription>
                     </div>
-                    <Button variant="outline" size="sm">View Details</Button>
+                    <Button variant="outline" size="sm">View details</Button>
                   </CardHeader>
                   <CardContent className="flex flex-col min-h-[350px]">
                     <div className="h-[300px]">
@@ -530,7 +530,7 @@ export default function Page() {
                           Trending up by 4.5% this month
                         </Badge>
                         <Badge variant="secondary" className="font-medium">
-                          Total Attendance: 91,700
+                          Total attendance: 91,700
                         </Badge>
                       </div>
                     </div>
@@ -540,10 +540,10 @@ export default function Page() {
                 <Card className="col-span-3">
                   <CardHeader className="flex flex-row items-start justify-between">
                     <div>
-                      <CardTitle>Upcoming Games</CardTitle>
-                      <CardDescription>Next 4 Home Games</CardDescription>
+                      <CardTitle>Upcoming games</CardTitle>
+                      <CardDescription>Next 4 home games</CardDescription>
                     </div>
-                    <Button variant="outline" size="sm">View All Games</Button>
+                    <Button variant="outline" size="sm">View all games</Button>
                   </CardHeader>
                   <CardContent className="p-0">
                     <div className="divide-y">
@@ -578,10 +578,10 @@ export default function Page() {
                 <Card>
                   <CardHeader className="flex flex-row items-start justify-between">
                     <div>
-                      <CardTitle>Seating Distribution</CardTitle>
-                      <CardDescription>By Arena Section</CardDescription>
+                      <CardTitle>Seating distribution</CardTitle>
+                      <CardDescription>By arena section</CardDescription>
                     </div>
-                    <Button variant="outline" size="sm">View Details</Button>
+                    <Button variant="outline" size="sm">View details</Button>
                   </CardHeader>
                   <CardContent className="flex flex-col min-h-[250px]">
                     <div className="h-[200px]">
@@ -640,10 +640,10 @@ export default function Page() {
                 <Card>
                   <CardHeader className="flex flex-row items-start justify-between">
                     <div>
-                      <CardTitle>Top Selling Games</CardTitle>
-                      <CardDescription>This Season</CardDescription>
+                      <CardTitle>Top selling games</CardTitle>
+                      <CardDescription>This season</CardDescription>
                     </div>
-                    <Button variant="outline" size="sm">View All</Button>
+                    <Button variant="outline" size="sm">View all</Button>
                   </CardHeader>
                   <CardContent className="p-0">
                     <div className="divide-y">
@@ -669,21 +669,21 @@ export default function Page() {
                 
                 <Card>
                   <CardHeader>
-                    <CardTitle>Quick Actions</CardTitle>
-                    <CardDescription>Box Office Tools</CardDescription>
+                    <CardTitle>Quick actions</CardTitle>
+                    <CardDescription>Box office tools</CardDescription>
                   </CardHeader>
                   <CardContent className="p-6 grid gap-2">
                     <Button className="w-full justify-start">
                       <Ticket className="mr-2 h-4 w-4" />
-                      Create New Ticket Package
+                      Create new ticket package
                     </Button>
                     <Button className="w-full justify-start" variant="secondary">
                       <Users className="mr-2 h-4 w-4" />
-                      Manage Group Sales
+                      Manage group sales
                     </Button>
                     <Button className="w-full justify-start" variant="outline">
                       <Download className="mr-2 h-4 w-4" />
-                      Export Sales Report
+                      Export sales report
                     </Button>
                   </CardContent>
                 </Card>
@@ -693,7 +693,7 @@ export default function Page() {
             <TabsContent value="sales" className="space-y-3">
               <Card>
                 <CardHeader>
-                  <CardTitle>Sales Dashboard</CardTitle>
+                  <CardTitle>Sales dashboard</CardTitle>
                   <CardDescription>Detailed sales analytics coming soon</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -705,7 +705,7 @@ export default function Page() {
             <TabsContent value="attendance" className="space-y-3">
               <Card>
                 <CardHeader>
-                  <CardTitle>Attendance Dashboard</CardTitle>
+                  <CardTitle>Attendance dashboard</CardTitle>
                   <CardDescription>Detailed attendance analytics coming soon</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -717,7 +717,7 @@ export default function Page() {
             <TabsContent value="inventory" className="space-y-3">
               <Card>
                 <CardHeader>
-                  <CardTitle>Inventory Dashboard</CardTitle>
+                  <CardTitle>Inventory dashboard</CardTitle>
                   <CardDescription>Detailed inventory analytics coming soon</CardDescription>
                 </CardHeader>
                 <CardContent>
