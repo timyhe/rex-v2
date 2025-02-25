@@ -178,6 +178,7 @@ export default function Page() {
     { opponent: "Boston Celtics", date: "May 15, 2024", ticketsSold: 18250, capacity: 19500 },
     { opponent: "Miami Heat", date: "May 18, 2024", ticketsSold: 17800, capacity: 19500 },
     { opponent: "Chicago Bulls", date: "May 22, 2024", ticketsSold: 16500, capacity: 19500 },
+    { opponent: "New York Knicks", date: "May 26, 2024", ticketsSold: 15900, capacity: 19500 },
   ]
 
   return (
@@ -232,7 +233,7 @@ export default function Page() {
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
-                    <TrendingUp className="h-4 w-4" />
+                    <TrendingUp className="h-4 w-4 text-[#860038]" />
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">$5.2M</div>
@@ -242,7 +243,7 @@ export default function Page() {
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">Tickets Sold</CardTitle>
-                    <Ticket className="h-4 w-4" />
+                    <Ticket className="h-4 w-4 text-[#FDBB30]" />
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">42,384</div>
@@ -252,7 +253,7 @@ export default function Page() {
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">Avg. Ticket Price</CardTitle>
-                    <Users className="h-4 w-4" />
+                    <Users className="h-4 w-4 text-[#041E42]" />
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">$122.68</div>
@@ -262,7 +263,7 @@ export default function Page() {
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">Sellout Rate</CardTitle>
-                    <TrendingUp className="h-4 w-4" />
+                    <TrendingUp className="h-4 w-4 text-[#860038]" />
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">92%</div>
@@ -280,7 +281,7 @@ export default function Page() {
                     </div>
                     <Button variant="outline" size="sm">View Details</Button>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="flex flex-col min-h-[350px]">
                     <div className="h-[300px]">
                       <ResponsiveContainer width="100%" height="100%">
                         <LineChart data={lineChartData}>
@@ -355,7 +356,7 @@ export default function Page() {
                         </LineChart>
                       </ResponsiveContainer>
                     </div>
-                    <div className="mt-4 space-y-1">
+                    <div className="mt-auto mb-0">
                       <div className="flex items-center justify-between">
                         <Badge variant="outline" className="bg-green-50 text-green-700 hover:bg-green-50 hover:text-green-700">
                           <TrendingUp className="mr-1 h-3 w-3" />
@@ -377,7 +378,7 @@ export default function Page() {
                     </div>
                     <Button variant="outline" size="sm">View Details</Button>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="flex flex-col min-h-[350px]">
                     <div className="h-[300px]">
                       <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
@@ -426,7 +427,7 @@ export default function Page() {
                         </PieChart>
                       </ResponsiveContainer>
                     </div>
-                    <div className="mt-4 space-y-1">
+                    <div className="mt-auto mb-0">
                       <div className="flex items-center justify-between">
                         <Badge variant="outline" className="bg-green-50 text-green-700 hover:bg-green-50 hover:text-green-700">
                           <TrendingUp className="mr-1 h-3 w-3" />
@@ -450,7 +451,7 @@ export default function Page() {
                     </div>
                     <Button variant="outline" size="sm">View Details</Button>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="flex flex-col min-h-[350px]">
                     <div className="h-[300px]">
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={barChartData}>
@@ -522,7 +523,7 @@ export default function Page() {
                         </BarChart>
                       </ResponsiveContainer>
                     </div>
-                    <div className="mt-4 space-y-1">
+                    <div className="mt-auto mb-0">
                       <div className="flex items-center justify-between">
                         <Badge variant="outline" className="bg-green-50 text-green-700 hover:bg-green-50 hover:text-green-700">
                           <TrendingUp className="mr-1 h-3 w-3" />
@@ -540,7 +541,7 @@ export default function Page() {
                   <CardHeader className="flex flex-row items-start justify-between">
                     <div>
                       <CardTitle>Upcoming Games</CardTitle>
-                      <CardDescription>Next 3 Home Games</CardDescription>
+                      <CardDescription>Next 4 Home Games</CardDescription>
                     </div>
                     <Button variant="outline" size="sm">View All Games</Button>
                   </CardHeader>
@@ -582,7 +583,7 @@ export default function Page() {
                     </div>
                     <Button variant="outline" size="sm">View Details</Button>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="flex flex-col min-h-[250px]">
                     <div className="h-[200px]">
                       <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
@@ -626,7 +627,7 @@ export default function Page() {
                         </PieChart>
                       </ResponsiveContainer>
                     </div>
-                    <div className="mt-4 space-y-1">
+                    <div className="mt-auto mb-0">
                       <div className="flex items-center justify-between">
                         <Badge variant="outline" className="font-medium">
                           Showing distribution across all sections
