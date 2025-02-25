@@ -17,12 +17,5 @@
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
-  "iconLibrary": "lucide",
-  "theme": {
-    "extend": {
-      "fontFamily": {
-        "sans": ["var(--font-roobert)"]
-      }
-    }
-  }
+  "iconLibrary": "lucide"
 }

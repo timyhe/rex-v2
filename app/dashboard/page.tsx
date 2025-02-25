@@ -356,9 +356,14 @@ export default function Page() {
                       </ResponsiveContainer>
                     </div>
                     <div className="mt-4 space-y-1">
-                      <div className="flex items-center justify-between text-sm">
-                        <div className="font-medium">Trending up by 5.2% this month</div>
-                        <div className="text-sm font-medium">Total Revenue: $5.2M</div>
+                      <div className="flex items-center justify-between">
+                        <Badge variant="outline" className="bg-green-50 text-green-700 hover:bg-green-50 hover:text-green-700">
+                          <TrendingUp className="mr-1 h-3 w-3" />
+                          Trending up by 5.2% this month
+                        </Badge>
+                        <Badge variant="secondary" className="font-medium">
+                          Total Revenue: $5.2M
+                        </Badge>
                       </div>
                     </div>
                   </CardContent>
@@ -422,9 +427,14 @@ export default function Page() {
                       </ResponsiveContainer>
                     </div>
                     <div className="mt-4 space-y-1">
-                      <div className="flex items-center justify-between text-sm">
-                        <div className="font-medium">Trending up by 3.8% this month</div>
-                        <div className="text-sm font-medium">Total Tickets: 42,384</div>
+                      <div className="flex items-center justify-between">
+                        <Badge variant="outline" className="bg-green-50 text-green-700 hover:bg-green-50 hover:text-green-700">
+                          <TrendingUp className="mr-1 h-3 w-3" />
+                          Trending up by 3.8% this month
+                        </Badge>
+                        <Badge variant="secondary" className="font-medium">
+                          Total Tickets: 42,384
+                        </Badge>
                       </div>
                     </div>
                   </CardContent>
@@ -513,9 +523,14 @@ export default function Page() {
                       </ResponsiveContainer>
                     </div>
                     <div className="mt-4 space-y-1">
-                      <div className="flex items-center justify-between text-sm">
-                        <div className="font-medium">Trending up by 4.5% this month</div>
-                        <div className="text-sm font-medium">Total Attendance: 91,700</div>
+                      <div className="flex items-center justify-between">
+                        <Badge variant="outline" className="bg-green-50 text-green-700 hover:bg-green-50 hover:text-green-700">
+                          <TrendingUp className="mr-1 h-3 w-3" />
+                          Trending up by 4.5% this month
+                        </Badge>
+                        <Badge variant="secondary" className="font-medium">
+                          Total Attendance: 91,700
+                        </Badge>
                       </div>
                     </div>
                   </CardContent>
@@ -532,7 +547,7 @@ export default function Page() {
                   <CardContent className="p-0">
                     <div className="divide-y">
                       {upcomingGames.map((game, index) => (
-                        <div key={index} className="p-4 flex justify-between items-center">
+                        <div key={index} className="p-6 flex justify-between items-center">
                           <div>
                             <h4 className="font-medium">vs. {game.opponent}</h4>
                             <p className="text-sm text-muted-foreground">{game.date}</p>
@@ -612,8 +627,10 @@ export default function Page() {
                       </ResponsiveContainer>
                     </div>
                     <div className="mt-4 space-y-1">
-                      <div className="flex items-center justify-between text-sm">
-                        <div className="font-medium">Showing distribution across all sections</div>
+                      <div className="flex items-center justify-between">
+                        <Badge variant="outline" className="font-medium">
+                          Showing distribution across all sections
+                        </Badge>
                       </div>
                     </div>
                   </CardContent>
@@ -629,19 +646,19 @@ export default function Page() {
                   </CardHeader>
                   <CardContent className="p-0">
                     <div className="divide-y">
-                      <div className="p-4 flex justify-between items-center">
+                      <div className="p-6 flex justify-between items-center">
                         <span>vs. Lakers</span>
                         <Badge>Sold Out</Badge>
                       </div>
-                      <div className="p-4 flex justify-between items-center">
+                      <div className="p-6 flex justify-between items-center">
                         <span>vs. Warriors</span>
                         <Badge>Sold Out</Badge>
                       </div>
-                      <div className="p-4 flex justify-between items-center">
+                      <div className="p-6 flex justify-between items-center">
                         <span>vs. Bucks</span>
                         <Badge variant="secondary">98%</Badge>
                       </div>
-                      <div className="p-4 flex justify-between items-center">
+                      <div className="p-6 flex justify-between items-center">
                         <span>vs. Celtics</span>
                         <Badge variant="secondary">95%</Badge>
                       </div>
@@ -654,7 +671,7 @@ export default function Page() {
                     <CardTitle>Quick Actions</CardTitle>
                     <CardDescription>Box Office Tools</CardDescription>
                   </CardHeader>
-                  <CardContent className="p-4 grid gap-2">
+                  <CardContent className="p-6 grid gap-2">
                     <Button className="w-full justify-start">
                       <Ticket className="mr-2 h-4 w-4" />
                       Create New Ticket Package
