@@ -94,44 +94,17 @@ const data = {
   teams: [
     {
       name: "Cleveland Cavaliers",
-      logo: () => (
-        <div className="relative h-9 w-9 bg-gray-100 rounded-md px-1 logo-transparent">
-          <Image 
-            src="/logos/cavaliers.svg" 
-            alt="Cleveland Cavaliers logo"
-            fill
-            className="object-contain p-1"
-          />
-        </div>
-      ),
+      logo: "/logos/cavs.svg",
       plan: "NBA",
     },
     {
       name: "Cleveland Monsters",
-      logo: () => (
-        <div className="relative h-9 w-9 bg-gray-100 rounded-md px-1 logo-transparent">
-          <Image 
-            src="/logos/monsters.svg" 
-            alt="Cleveland Monsters logo"
-            fill
-            className="object-contain p-1"
-          />
-        </div>
-      ),
+      logo: "/logos/monsters.svg",
       plan: "AHL",
     },
     {
       name: "Rocket Arena",
-      logo: () => (
-        <div className="relative h-9 w-9 bg-gray-100 rounded-md px-1 logo-transparent">
-          <Image 
-            src="/logos/rocket-arena.svg" 
-            alt="Rocket Arena logo"
-            fill
-            className="object-contain p-1"
-          />
-        </div>
-      ),
+      logo: "/logos/rocket-arena.svg",
       plan: "Venue",
     },
   ],

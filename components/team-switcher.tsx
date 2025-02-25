@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { ChevronsUpDown, Plus } from "lucide-react"
+import Image from "next/image"
 
 import {
   DropdownMenu,
@@ -19,17 +20,19 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
-export function TeamSwitcher({
-  teams,
-}: {
-  teams: {
-    name: string
-    logo: React.ElementType
-    plan: string
-  }[]
-}) {
+interface Team {
+  name: string
+  logo: string
+  plan: string
+}
+
+interface TeamSwitcherProps {
+  teams: Team[]
+}
+
+export function TeamSwitcher({ teams }: TeamSwitcherProps) {
   const { isMobile } = useSidebar()
-  const [activeTeam, setActiveTeam] = React.useState(teams[0])
+  const [selectedTeam, setSelectedTeam] = React.useState<Team>(teams[0])
 
   return (
     <SidebarMenu>
@@ -41,13 +44,22 @@ export function TeamSwitcher({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                <div className="bg-gray-100 flex aspect-square size-8 items-center justify-center rounded-lg px-1 logo-transparent">
-                  <activeTeam.logo className="size-4" />
+                <div className="bg-gray-100 flex aspect-square size-8 items-center justify-center rounded-lg">
+                  <div className="relative flex items-center justify-center h-6 w-6">
+                    <Image 
+                      src={selectedTeam.logo} 
+                      alt={`${selectedTeam.name} logo`}
+                      width={24}
+                      height={24}
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
                 </div>
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{activeTeam.name}</span>
-                <span className="truncate text-xs">{activeTeam.plan}</span>
+                <span className="truncate font-medium">{selectedTeam.name}</span>
+                <span className="truncate text-xs">{selectedTeam.plan}</span>
               </div>
               <ChevronsUpDown className="ml-auto" />
             </SidebarMenuButton>
@@ -61,19 +73,27 @@ export function TeamSwitcher({
             <DropdownMenuLabel className="text-muted-foreground text-xs">
               Teams
             </DropdownMenuLabel>
-            {teams.map((team, index) => (
+            {teams.map((team) => (
               <DropdownMenuItem
                 key={team.name}
-                onClick={() => setActiveTeam(team)}
+                onClick={() => setSelectedTeam(team)}
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-xs border">
-                  <div className="bg-gray-100 flex size-6 items-center justify-center rounded-xs border px-0.5 logo-transparent">
-                    <team.logo className="size-4 shrink-0" />
+                  <div className="bg-gray-100 flex size-6 items-center justify-center rounded-xs">
+                    <div className="relative flex items-center justify-center h-5 w-5">
+                      <Image 
+                        src={team.logo} 
+                        alt={`${team.name} logo`}
+                        width={20}
+                        height={20}
+                        className="object-contain"
+                      />
+                    </div>
                   </div>
                 </div>
                 {team.name}
-                <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
+                <DropdownMenuShortcut>⌘{teams.indexOf(team) + 1}</DropdownMenuShortcut>
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />

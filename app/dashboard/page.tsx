@@ -25,7 +25,9 @@ import {
   Line, 
   LineChart, 
   Pie, 
-  PieChart 
+  PieChart,
+  ResponsiveContainer,
+  Tooltip
 } from "recharts"
 import { 
   ChartContainer, 
@@ -215,9 +217,9 @@ export default function Page() {
             </Button>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+        <div className="flex flex-1 flex-col gap-3 p-4 pt-0 pb-1">
           
-          <Tabs defaultValue="overview" className="space-y-4">
+          <Tabs defaultValue="overview" className="space-y-3">
             <TabsList>
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="sales">Sales</TabsTrigger>
@@ -225,8 +227,8 @@ export default function Page() {
               <TabsTrigger value="inventory">Inventory</TabsTrigger>
             </TabsList>
             
-            <TabsContent value="overview" className="space-y-4">
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <TabsContent value="overview" className="space-y-3">
+              <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
@@ -269,142 +271,263 @@ export default function Page() {
                 </Card>
               </div>
               
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid gap-3 md:grid-cols-2">
                 <Card className="col-span-1">
-                  <CardHeader>
-                    <CardTitle>Revenue by Ticket Type</CardTitle>
-                    <CardDescription>January - June 2024</CardDescription>
+                  <CardHeader className="flex flex-row items-start justify-between">
+                    <div>
+                      <CardTitle>Revenue by Ticket Type</CardTitle>
+                      <CardDescription>January - June 2024</CardDescription>
+                    </div>
+                    <Button variant="outline" size="sm">View Details</Button>
                   </CardHeader>
                   <CardContent>
-                    <ChartContainer config={chartConfig} className="h-[300px]">
-                      <LineChart accessibilityLayer data={lineChartData}>
-                        <CartesianGrid vertical={false} />
-                        <XAxis 
-                          dataKey="name" 
-                          tickLine={false} 
-                          axisLine={false}
-                        />
-                        <YAxis 
-                          tickLine={false}
-                          axisLine={false}
-                          tickFormatter={(value) => `$${(value/1000).toFixed(0)}k`}
-                        />
-                        <ChartTooltip content={<ChartTooltipContent />} />
-                        <ChartLegend content={<ChartLegendContent />} />
-                        <Line 
-                          type="monotone" 
-                          dataKey="Season Tickets" 
-                          stroke="#860038" 
-                          strokeWidth={2}
-                        />
-                        <Line 
-                          type="monotone" 
-                          dataKey="Group Sales" 
-                          stroke="#FDBB30" 
-                          strokeWidth={2}
-                        />
-                        <Line 
-                          type="monotone" 
-                          dataKey="Single Game" 
-                          stroke="#041E42" 
-                          strokeWidth={2}
-                        />
-                      </LineChart>
-                    </ChartContainer>
+                    <div className="h-[300px]">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <LineChart data={lineChartData}>
+                          <CartesianGrid 
+                            strokeDasharray="10 10" 
+                            horizontal={true} 
+                            vertical={false} 
+                            stroke="#e5e5e5" 
+                          />
+                          <XAxis 
+                            dataKey="name" 
+                            tickLine={false} 
+                            axisLine={false}
+                            tick={{ fill: '#888888', fontSize: 12 }}
+                            dy={10}
+                          />
+                          <YAxis 
+                            tickLine={false}
+                            axisLine={false}
+                            tickFormatter={(value) => `$${(value/1000).toFixed(0)}k`}
+                            tick={{ fill: '#888888', fontSize: 12 }}
+                            dx={-10}
+                          />
+                          <Tooltip
+                            content={({ active, payload }) => {
+                              if (active && payload && payload.length) {
+                                return (
+                                  <div className="rounded-lg border bg-background p-2 shadow-sm">
+                                    <div className="grid grid-cols-2 gap-2">
+                                      {payload.map((entry) => (
+                                        <div key={entry.dataKey} className="flex flex-col">
+                                          <span className="text-[0.70rem] uppercase text-muted-foreground">
+                                            {entry.dataKey}
+                                          </span>
+                                          <span className="font-bold text-xs" style={{ color: entry.color }}>
+                                            ${Number(entry.value).toLocaleString()}
+                                          </span>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )
+                              }
+                              return null
+                            }}
+                            cursor={{ stroke: '#f0f0f0', strokeDasharray: '5 5' }}
+                          />
+                          <Line 
+                            type="monotone" 
+                            dataKey="Season Tickets" 
+                            stroke="#860038" 
+                            strokeWidth={2}
+                            dot={false}
+                            activeDot={{ r: 6, strokeWidth: 0 }}
+                          />
+                          <Line 
+                            type="monotone" 
+                            dataKey="Group Sales" 
+                            stroke="#FDBB30" 
+                            strokeWidth={2}
+                            dot={false}
+                            activeDot={{ r: 6, strokeWidth: 0 }}
+                          />
+                          <Line 
+                            type="monotone" 
+                            dataKey="Single Game" 
+                            stroke="#041E42" 
+                            strokeWidth={2}
+                            dot={false}
+                            activeDot={{ r: 6, strokeWidth: 0 }}
+                          />
+                        </LineChart>
+                      </ResponsiveContainer>
+                    </div>
+                    <div className="mt-4 space-y-1">
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="font-medium">Trending up by 5.2% this month</div>
+                        <div className="text-sm font-medium">Total Revenue: $5.2M</div>
+                      </div>
+                    </div>
                   </CardContent>
-                  <CardFooter className="flex justify-between">
-                    <span className="text-sm text-muted-foreground">Total Revenue: $5.2M</span>
-                    <Button variant="outline" size="sm">View Details</Button>
-                  </CardFooter>
                 </Card>
                 
                 <Card className="col-span-1">
-                  <CardHeader>
-                    <CardTitle>Ticket Distribution</CardTitle>
-                    <CardDescription>Current Season</CardDescription>
+                  <CardHeader className="flex flex-row items-start justify-between">
+                    <div>
+                      <CardTitle>Ticket Distribution</CardTitle>
+                      <CardDescription>Current Season</CardDescription>
+                    </div>
+                    <Button variant="outline" size="sm">View Details</Button>
                   </CardHeader>
                   <CardContent>
-                    <ChartContainer config={chartConfig} className="h-[300px]">
-                      <PieChart>
-                        <Pie
-                          data={donutChartData}
-                          dataKey="value"
-                          nameKey="name"
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={60}
-                          outerRadius={80}
-                          paddingAngle={2}
-                        >
-                          {donutChartData.map((entry, index) => (
-                            <Cell 
-                              key={`cell-${index}`} 
-                              fill={index === 0 ? "#860038" : index === 1 ? "#FDBB30" : "#041E42"} 
-                            />
-                          ))}
-                        </Pie>
-                        <ChartTooltip content={<ChartTooltipContent />} />
-                        <ChartLegend content={<ChartLegendContent />} />
-                      </PieChart>
-                    </ChartContainer>
+                    <div className="h-[300px]">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <PieChart>
+                          <Pie
+                            data={donutChartData}
+                            dataKey="value"
+                            nameKey="name"
+                            cx="50%"
+                            cy="50%"
+                            innerRadius={60}
+                            outerRadius={80}
+                            paddingAngle={2}
+                            stroke="#ffffff"
+                            strokeWidth={2}
+                          >
+                            {donutChartData.map((entry, index) => (
+                              <Cell 
+                                key={`cell-${index}`} 
+                                fill={index === 0 ? "#860038" : index === 1 ? "#FDBB30" : "#041E42"} 
+                              />
+                            ))}
+                          </Pie>
+                          <Tooltip
+                            content={({ active, payload }) => {
+                              if (active && payload && payload.length) {
+                                return (
+                                  <div className="rounded-lg border bg-background p-2 shadow-sm">
+                                    <div className="flex flex-col">
+                                      <span className="text-[0.70rem] uppercase text-muted-foreground">
+                                        {payload[0].name}
+                                      </span>
+                                      <span className="font-bold text-xs" style={{ color: payload[0].color }}>
+                                        {payload[0].value}%
+                                      </span>
+                                    </div>
+                                  </div>
+                                )
+                              }
+                              return null
+                            }}
+                          />
+                          <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle">
+                            <tspan x="50%" dy="-5" className="text-xs font-medium">Total</tspan>
+                            <tspan x="50%" dy="20" className="text-xl font-bold">42,384</tspan>
+                          </text>
+                        </PieChart>
+                      </ResponsiveContainer>
+                    </div>
+                    <div className="mt-4 space-y-1">
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="font-medium">Trending up by 3.8% this month</div>
+                        <div className="text-sm font-medium">Total Tickets: 42,384</div>
+                      </div>
+                    </div>
                   </CardContent>
-                  <CardFooter className="flex justify-between">
-                    <span className="text-sm text-muted-foreground">Total Tickets: 42,384</span>
-                    <Button variant="outline" size="sm">View Details</Button>
-                  </CardFooter>
                 </Card>
               </div>
               
-              <div className="grid gap-4 md:grid-cols-7">
+              <div className="grid gap-3 md:grid-cols-7">
                 <Card className="col-span-4">
-                  <CardHeader>
-                    <CardTitle>Attendance by Event</CardTitle>
-                    <CardDescription>January - June 2024</CardDescription>
+                  <CardHeader className="flex flex-row items-start justify-between">
+                    <div>
+                      <CardTitle>Attendance by Event</CardTitle>
+                      <CardDescription>January - June 2024</CardDescription>
+                    </div>
+                    <Button variant="outline" size="sm">View Details</Button>
                   </CardHeader>
                   <CardContent>
-                    <ChartContainer config={chartConfig} className="h-[300px]">
-                      <BarChart accessibilityLayer data={barChartData}>
-                        <CartesianGrid vertical={false} />
-                        <XAxis 
-                          dataKey="name" 
-                          tickLine={false} 
-                          axisLine={false}
-                        />
-                        <YAxis 
-                          tickLine={false}
-                          axisLine={false}
-                          tickFormatter={(value) => value.toLocaleString()}
-                        />
-                        <ChartTooltip content={<ChartTooltipContent />} />
-                        <ChartLegend content={<ChartLegendContent />} />
-                        <Bar 
-                          dataKey="Cavaliers" 
-                          fill="#860038" 
-                          radius={4}
-                        />
-                        <Bar 
-                          dataKey="Monsters" 
-                          fill="#041E42" 
-                          radius={4}
-                        />
-                        <Bar 
-                          dataKey="Other" 
-                          fill="#FDBB30" 
-                          radius={4}
-                        />
-                      </BarChart>
-                    </ChartContainer>
+                    <div className="h-[300px]">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <BarChart data={barChartData}>
+                          <CartesianGrid 
+                            strokeDasharray="10 10" 
+                            horizontal={true} 
+                            vertical={false} 
+                            stroke="#e5e5e5" 
+                          />
+                          <XAxis 
+                            dataKey="name" 
+                            tickLine={false} 
+                            axisLine={false}
+                            tick={{ fill: '#888888', fontSize: 12 }}
+                            dy={10}
+                          />
+                          <YAxis 
+                            tickLine={false}
+                            axisLine={false}
+                            tickFormatter={(value) => value.toLocaleString()}
+                            tick={{ fill: '#888888', fontSize: 12 }}
+                            dx={-10}
+                          />
+                          <Tooltip
+                            content={({ active, payload }) => {
+                              if (active && payload && payload.length) {
+                                return (
+                                  <div className="rounded-lg border bg-background p-2 shadow-sm">
+                                    <div className="grid grid-cols-1 gap-2">
+                                      {payload.map((entry) => (
+                                        <div key={entry.dataKey} className="flex flex-col">
+                                          <span className="text-[0.70rem] uppercase text-muted-foreground">
+                                            {entry.dataKey}
+                                          </span>
+                                          <span className="font-bold text-xs" style={{ color: entry.color }}>
+                                            {Number(entry.value).toLocaleString()}
+                                          </span>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )
+                              }
+                              return null
+                            }}
+                            cursor={{ fill: 'rgba(0, 0, 0, 0.05)' }}
+                          />
+                          <Bar 
+                            dataKey="Cavaliers" 
+                            fill="#860038" 
+                            radius={[4, 4, 0, 0]}
+                            barSize={20}
+                            maxBarSize={20}
+                          />
+                          <Bar 
+                            dataKey="Monsters" 
+                            fill="#041E42" 
+                            radius={[4, 4, 0, 0]}
+                            barSize={20}
+                            maxBarSize={20}
+                          />
+                          <Bar 
+                            dataKey="Other" 
+                            fill="#FDBB30" 
+                            radius={[4, 4, 0, 0]}
+                            barSize={20}
+                            maxBarSize={20}
+                          />
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </div>
+                    <div className="mt-4 space-y-1">
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="font-medium">Trending up by 4.5% this month</div>
+                        <div className="text-sm font-medium">Total Attendance: 91,700</div>
+                      </div>
+                    </div>
                   </CardContent>
-                  <CardFooter className="flex justify-between">
-                    <span className="text-sm text-muted-foreground">Total Attendance: 91,700</span>
-                    <Button variant="outline" size="sm">View Details</Button>
-                  </CardFooter>
                 </Card>
                 
                 <Card className="col-span-3">
-                  <CardHeader>
-                    <CardTitle>Upcoming Games</CardTitle>
-                    <CardDescription>Next 3 Home Games</CardDescription>
+                  <CardHeader className="flex flex-row items-start justify-between">
+                    <div>
+                      <CardTitle>Upcoming Games</CardTitle>
+                      <CardDescription>Next 3 Home Games</CardDescription>
+                    </div>
+                    <Button variant="outline" size="sm">View All Games</Button>
                   </CardHeader>
                   <CardContent className="p-0">
                     <div className="divide-y">
@@ -432,66 +555,93 @@ export default function Page() {
                       ))}
                     </div>
                   </CardContent>
-                  <CardFooter className="flex justify-center">
-                    <Button className="w-full">
-                      View All Games
-                    </Button>
-                  </CardFooter>
                 </Card>
               </div>
               
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="grid gap-3 md:grid-cols-3">
                 <Card>
-                  <CardHeader>
-                    <CardTitle>Seating Distribution</CardTitle>
-                    <CardDescription>By Arena Section</CardDescription>
+                  <CardHeader className="flex flex-row items-start justify-between">
+                    <div>
+                      <CardTitle>Seating Distribution</CardTitle>
+                      <CardDescription>By Arena Section</CardDescription>
+                    </div>
+                    <Button variant="outline" size="sm">View Details</Button>
                   </CardHeader>
                   <CardContent>
-                    <ChartContainer config={chartConfig} className="h-[200px]">
-                      <PieChart>
-                        <Pie
-                          data={pieChartData}
-                          dataKey="value"
-                          nameKey="name"
-                          cx="50%"
-                          cy="50%"
-                          outerRadius={80}
-                          paddingAngle={2}
-                        >
-                          {pieChartData.map((entry, index) => (
-                            <Cell 
-                              key={`cell-${index}`} 
-                              fill={index === 0 ? "#860038" : index === 1 ? "#FDBB30" : "#041E42"} 
-                            />
-                          ))}
-                        </Pie>
-                        <ChartTooltip content={<ChartTooltipContent />} />
-                        <ChartLegend content={<ChartLegendContent />} />
-                      </PieChart>
-                    </ChartContainer>
+                    <div className="h-[200px]">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <PieChart>
+                          <Pie
+                            data={pieChartData}
+                            dataKey="value"
+                            nameKey="name"
+                            cx="50%"
+                            cy="50%"
+                            outerRadius={80}
+                            paddingAngle={2}
+                            stroke="#ffffff"
+                            strokeWidth={2}
+                          >
+                            {pieChartData.map((entry, index) => (
+                              <Cell 
+                                key={`cell-${index}`} 
+                                fill={index === 0 ? "#860038" : index === 1 ? "#FDBB30" : "#041E42"} 
+                              />
+                            ))}
+                          </Pie>
+                          <Tooltip
+                            content={({ active, payload }) => {
+                              if (active && payload && payload.length) {
+                                return (
+                                  <div className="rounded-lg border bg-background p-2 shadow-sm">
+                                    <div className="flex flex-col">
+                                      <span className="text-[0.70rem] uppercase text-muted-foreground">
+                                        {payload[0].name}
+                                      </span>
+                                      <span className="font-bold text-xs" style={{ color: payload[0].color }}>
+                                        {payload[0].value}%
+                                      </span>
+                                    </div>
+                                  </div>
+                                )
+                              }
+                              return null
+                            }}
+                          />
+                        </PieChart>
+                      </ResponsiveContainer>
+                    </div>
+                    <div className="mt-4 space-y-1">
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="font-medium">Showing distribution across all sections</div>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
                 
                 <Card>
-                  <CardHeader>
-                    <CardTitle>Top Selling Games</CardTitle>
-                    <CardDescription>This Season</CardDescription>
+                  <CardHeader className="flex flex-row items-start justify-between">
+                    <div>
+                      <CardTitle>Top Selling Games</CardTitle>
+                      <CardDescription>This Season</CardDescription>
+                    </div>
+                    <Button variant="outline" size="sm">View All</Button>
                   </CardHeader>
                   <CardContent className="p-0">
                     <div className="divide-y">
-                      <div className="p-3 flex justify-between">
+                      <div className="p-4 flex justify-between items-center">
                         <span>vs. Lakers</span>
                         <Badge>Sold Out</Badge>
                       </div>
-                      <div className="p-3 flex justify-between">
+                      <div className="p-4 flex justify-between items-center">
                         <span>vs. Warriors</span>
                         <Badge>Sold Out</Badge>
                       </div>
-                      <div className="p-3 flex justify-between">
+                      <div className="p-4 flex justify-between items-center">
                         <span>vs. Bucks</span>
                         <Badge variant="secondary">98%</Badge>
                       </div>
-                      <div className="p-3 flex justify-between">
+                      <div className="p-4 flex justify-between items-center">
                         <span>vs. Celtics</span>
                         <Badge variant="secondary">95%</Badge>
                       </div>
@@ -522,7 +672,7 @@ export default function Page() {
               </div>
             </TabsContent>
             
-            <TabsContent value="sales" className="space-y-4">
+            <TabsContent value="sales" className="space-y-3">
               <Card>
                 <CardHeader>
                   <CardTitle>Sales Dashboard</CardTitle>
@@ -534,7 +684,7 @@ export default function Page() {
               </Card>
             </TabsContent>
             
-            <TabsContent value="attendance" className="space-y-4">
+            <TabsContent value="attendance" className="space-y-3">
               <Card>
                 <CardHeader>
                   <CardTitle>Attendance Dashboard</CardTitle>
@@ -546,7 +696,7 @@ export default function Page() {
               </Card>
             </TabsContent>
             
-            <TabsContent value="inventory" className="space-y-4">
+            <TabsContent value="inventory" className="space-y-3">
               <Card>
                 <CardHeader>
                   <CardTitle>Inventory Dashboard</CardTitle>
