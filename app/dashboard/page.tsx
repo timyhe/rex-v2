@@ -233,7 +233,9 @@ export default function Page() {
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">Total revenue</CardTitle>
-                    <TrendingUp className="h-4 w-4 text-[#860038]" />
+                    <div className="h-8 w-8 rounded-full bg-[#860038]/10 flex items-center justify-center">
+                      <TrendingUp className="h-4 w-4 text-[#860038]" />
+                    </div>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">$5.2M</div>
@@ -243,7 +245,9 @@ export default function Page() {
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">Tickets sold</CardTitle>
-                    <Ticket className="h-4 w-4 text-[#FDBB30]" />
+                    <div className="h-8 w-8 rounded-full bg-[#FDBB30]/10 flex items-center justify-center">
+                      <Ticket className="h-4 w-4 text-[#FDBB30]" />
+                    </div>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">42,384</div>
@@ -253,7 +257,9 @@ export default function Page() {
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">Avg. ticket price</CardTitle>
-                    <Users className="h-4 w-4 text-[#041E42]" />
+                    <div className="h-8 w-8 rounded-full bg-[#041E42]/10 flex items-center justify-center">
+                      <Users className="h-4 w-4 text-[#041E42]" />
+                    </div>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">$122.68</div>
@@ -263,7 +269,9 @@ export default function Page() {
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">Sellout rate</CardTitle>
-                    <TrendingUp className="h-4 w-4 text-[#860038]" />
+                    <div className="h-8 w-8 rounded-full bg-[#860038]/10 flex items-center justify-center">
+                      <TrendingUp className="h-4 w-4 text-[#860038]" />
+                    </div>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">92%</div>
@@ -578,59 +586,84 @@ export default function Page() {
                 <Card>
                   <CardHeader className="flex flex-row items-start justify-between">
                     <div>
-                      <CardTitle>Seating distribution</CardTitle>
-                      <CardDescription>By arena section</CardDescription>
+                      <CardTitle>Seating chart</CardTitle>
+                      <CardDescription>Rocket Mortgage FieldHouse</CardDescription>
                     </div>
                     <Button variant="outline" size="sm">View details</Button>
                   </CardHeader>
                   <CardContent className="flex flex-col min-h-[250px]">
-                    <div className="h-[200px]">
-                      <ResponsiveContainer width="100%" height="100%">
-                        <PieChart>
-                          <Pie
-                            data={pieChartData}
-                            dataKey="value"
-                            nameKey="name"
-                            cx="50%"
-                            cy="50%"
-                            outerRadius={80}
-                            paddingAngle={2}
-                            stroke="#ffffff"
-                            strokeWidth={2}
-                          >
-                            {pieChartData.map((entry, index) => (
-                              <Cell 
-                                key={`cell-${index}`} 
-                                fill={index === 0 ? "#860038" : index === 1 ? "#FDBB30" : "#041E42"} 
-                              />
-                            ))}
-                          </Pie>
-                          <Tooltip
-                            content={({ active, payload }) => {
-                              if (active && payload && payload.length) {
-                                return (
-                                  <div className="rounded-lg border bg-background p-2 shadow-sm">
-                                    <div className="flex flex-col">
-                                      <span className="text-[0.70rem] uppercase text-muted-foreground">
-                                        {payload[0].name}
-                                      </span>
-                                      <span className="font-bold text-xs" style={{ color: payload[0].color }}>
-                                        {payload[0].value}%
-                                      </span>
-                                    </div>
-                                  </div>
-                                )
-                              }
-                              return null
-                            }}
-                          />
-                        </PieChart>
-                      </ResponsiveContainer>
+                    <div className="h-[200px] flex items-center justify-center">
+                      <div className="relative w-full h-full flex items-center justify-center">
+                        {/* Main Arena Container - Oval shape like the actual arena */}
+                        <div className="relative w-[280px] h-[180px] border-2 border-gray-300 rounded-[100px] bg-gray-50 overflow-hidden">
+                          
+                          {/* Court with Cavaliers C logo */}
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[100px] h-[60px] bg-[#F5EBD8] border border-gray-400 flex items-center justify-center">
+                            <div className="w-12 h-12 bg-[#860038] rounded-sm flex items-center justify-center text-[#FDBB30] font-bold text-xl">C</div>
+                          </div>
+                          
+                          {/* Numbered Sections - Using the actual layout pattern */}
+                          {/* Upper Level (200s) - Navy */}
+                          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[200px] h-[25px] bg-[#041E42]"></div>
+                          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[200px] h-[25px] bg-[#041E42]"></div>
+                          <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-[25px] h-[120px] bg-[#041E42]"></div>
+                          <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-[25px] h-[120px] bg-[#041E42]"></div>
+                          
+                          {/* Club Level (C sections) - Gold */}
+                          <div className="absolute top-[25px] left-1/2 transform -translate-x-1/2 w-[180px] h-[20px] bg-[#FDBB30]"></div>
+                          <div className="absolute bottom-[25px] left-1/2 transform -translate-x-1/2 w-[180px] h-[20px] bg-[#FDBB30]"></div>
+                          <div className="absolute left-[25px] top-1/2 transform -translate-y-1/2 w-[20px] h-[100px] bg-[#FDBB30]"></div>
+                          <div className="absolute right-[25px] top-1/2 transform -translate-y-1/2 w-[20px] h-[100px] bg-[#FDBB30]"></div>
+                          
+                          {/* Lower Bowl (100s) - Wine */}
+                          <div className="absolute top-[45px] left-1/2 transform -translate-x-1/2 w-[160px] h-[30px] bg-[#860038]"></div>
+                          <div className="absolute bottom-[45px] left-1/2 transform -translate-x-1/2 w-[160px] h-[30px] bg-[#860038]"></div>
+                          <div className="absolute left-[45px] top-1/2 transform -translate-y-1/2 w-[30px] h-[80px] bg-[#860038]"></div>
+                          <div className="absolute right-[45px] top-1/2 transform -translate-y-1/2 w-[30px] h-[80px] bg-[#860038]"></div>
+                          
+                          {/* Section Numbers - Simplified representation */}
+                          <div className="absolute top-[5px] left-1/2 transform -translate-x-1/2 text-[8px] font-bold text-white">200s</div>
+                          <div className="absolute bottom-[5px] left-1/2 transform -translate-x-1/2 text-[8px] font-bold text-white">200s</div>
+                          <div className="absolute left-[5px] top-1/2 transform -translate-y-1/2 text-[8px] font-bold text-white">200s</div>
+                          <div className="absolute right-[5px] top-1/2 transform -translate-y-1/2 text-[8px] font-bold text-white">200s</div>
+                          
+                          <div className="absolute top-[30px] left-1/2 transform -translate-x-1/2 text-[8px] font-bold text-gray-800">C100s</div>
+                          <div className="absolute bottom-[30px] left-1/2 transform -translate-x-1/2 text-[8px] font-bold text-gray-800">C100s</div>
+                          
+                          <div className="absolute top-[55px] left-1/2 transform -translate-x-1/2 text-[8px] font-bold text-white">100s</div>
+                          <div className="absolute bottom-[55px] left-1/2 transform -translate-x-1/2 text-[8px] font-bold text-white">100s</div>
+                          
+                          {/* Special sections */}
+                          <div className="absolute top-[85px] right-[75px] text-[7px] font-bold text-white">VIP</div>
+                          <div className="absolute top-[85px] left-[75px] text-[7px] font-bold text-white">VIP</div>
+                        </div>
+                        
+                        {/* Legend */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-white p-2 rounded-md shadow-sm">
+                          <div className="grid grid-cols-3 gap-1 text-xs">
+                            <div className="flex items-center">
+                              <div className="w-3 h-3 bg-[#860038] mr-1 rounded-sm"></div>
+                              <span>Lower Bowl (42%)</span>
+                            </div>
+                            <div className="flex items-center">
+                              <div className="w-3 h-3 bg-[#FDBB30] mr-1 rounded-sm"></div>
+                              <span>Club Level (28%)</span>
+                            </div>
+                            <div className="flex items-center">
+                              <div className="w-3 h-3 bg-[#041E42] mr-1 rounded-sm"></div>
+                              <span>Upper Level (30%)</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div className="mt-auto mb-0">
                       <div className="flex items-center justify-between">
                         <Badge variant="outline" className="font-medium">
-                          Showing distribution across all sections
+                          Total capacity: 19,500 seats
+                        </Badge>
+                        <Badge variant="secondary" className="font-medium">
+                          Interactive view in full details
                         </Badge>
                       </div>
                     </div>
@@ -673,17 +706,25 @@ export default function Page() {
                     <CardDescription>Box office tools</CardDescription>
                   </CardHeader>
                   <CardContent className="p-6 grid gap-2">
-                    <Button className="w-full justify-start">
+                    <Button variant="outline" className="w-full justify-start">
                       <Ticket className="mr-2 h-4 w-4" />
                       Create new ticket package
                     </Button>
-                    <Button className="w-full justify-start" variant="secondary">
+                    <Button variant="outline" className="w-full justify-start">
                       <Users className="mr-2 h-4 w-4" />
                       Manage group sales
                     </Button>
-                    <Button className="w-full justify-start" variant="outline">
+                    <Button variant="outline" className="w-full justify-start">
                       <Download className="mr-2 h-4 w-4" />
                       Export sales report
+                    </Button>
+                    <Button variant="outline" className="w-full justify-start">
+                      <RefreshCw className="mr-2 h-4 w-4" />
+                      Update pricing tiers
+                    </Button>
+                    <Button variant="outline" className="w-full justify-start">
+                      <Filter className="mr-2 h-4 w-4" />
+                      View inventory status
                     </Button>
                   </CardContent>
                 </Card>
